@@ -1,6 +1,7 @@
 // This sample shows adding an action to an [AppBar] that opens a shopping cart.
 
 import 'package:flutter/material.dart';
+import 'package:my_animes/views/splash/splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,33 +10,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Code Sample for material.AppBar.actions',
+      title: 'My Anime App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
+        accentColor: Colors.pinkAccent,
+        textTheme: TextTheme(
+          headline: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+          title: TextStyle(fontSize: 26.0, fontFamily: 'Raleway-Bold'),
+          body1: TextStyle(fontSize: 18.0, fontFamily: 'Raleway-Regular'),
+          body2: TextStyle(fontSize: 14.0, fontFamily: 'Raleway-Regular'),
+        ),
       ),
-      home: MyStatelessWidget(),
+      initialRoute: '/',
+      onGenerateRoute: getRoute,
     );
   }
-}
 
-class MyStatelessWidget extends StatelessWidget {
-  MyStatelessWidget({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Hello World'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            tooltip: 'Open shopping cart',
-            onPressed: () {
-              // ...
-            },
-          ),
-        ],
-      ),
-    );
+  Route<dynamic> getRoute(routeSettings) {
+    switch (routeSettings.name) {
+      default:
+        return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (context) => SplashScreen(),
+        );
+    }
   }
 }
