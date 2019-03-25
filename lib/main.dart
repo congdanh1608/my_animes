@@ -1,7 +1,11 @@
 // This sample shows adding an action to an [AppBar] that opens a shopping cart.
 
 import 'package:flutter/material.dart';
-import 'package:my_animes/views/splash/splash.dart';
+import 'package:my_animes/views/forget_password/forget_password_screen.dart';
+import 'package:my_animes/views/home/home_screen.dart';
+import 'package:my_animes/views/login/login_screen.dart';
+import 'package:my_animes/views/register/register_screen.dart';
+import 'package:my_animes/views/splash/splash_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,18 +26,36 @@ class MyApp extends StatelessWidget {
           body2: TextStyle(fontSize: 14.0, fontFamily: 'Raleway-Regular'),
         ),
       ),
-      initialRoute: '/',
+      initialRoute: '/splashScreen',
       onGenerateRoute: getRoute,
     );
   }
 
   Route<dynamic> getRoute(routeSettings) {
+    Widget widget;
     switch (routeSettings.name) {
-      default:
-        return MaterialPageRoute(
-          settings: routeSettings,
-          builder: (context) => SplashScreen(),
-        );
+      case '/splashScreen':
+        widget = SplashScreen();
+        break;
+      case '/loginScreen':
+        widget = LoginScreen();
+        break;
+      case '/registerScreen':
+        widget = RegisterScreen();
+        break;
+      case '/forgetPasswordScreen':
+        widget = ForgetPasswordScreen();
+        break;
+      case '/homeScreen':
+        widget = HomeScreen();
+        break;
+
     }
+    return MaterialPageRoute(
+      settings: routeSettings,
+      builder: (context) {
+        return widget;
+      },
+    );
   }
 }
