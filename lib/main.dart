@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           body2: TextStyle(fontSize: 14.0, fontFamily: 'Raleway-Regular'),
         ),
       ),
-      initialRoute: '/splashScreen',
+      initialRoute: '/',
       onGenerateRoute: getRoute,
     );
   }
@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
   Route<dynamic> getRoute(routeSettings) {
     Widget widget;
     switch (routeSettings.name) {
+      case '/':
       case '/splashScreen':
         widget = SplashScreen();
         break;

@@ -1,10 +1,10 @@
-class SSSEntity {
-	SSSData data;
+class Entity {
+	Data data;
 
-	SSSEntity({this.data});
+	Entity({this.data});
 
-	SSSEntity.fromJson(Map<String, dynamic> json) {
-		data = json['data'] != null ? new SSSData.fromJson(json['data']) : null;
+	Entity.fromJson(Map<String, dynamic> json) {
+		data = json['data'] != null ? new Data.fromJson(json['data']) : null;
 	}
 
 	Map<String, dynamic> toJson() {
@@ -16,13 +16,13 @@ class SSSEntity {
 	}
 }
 
-class SSSData {
-	SSSDataPage page;
+class Data {
+	DataPage page;
 
-	SSSData({this.page});
+	Data({this.page});
 
-	SSSData.fromJson(Map<String, dynamic> json) {
-		page = json['Page'] != null ? new SSSDataPage.fromJson(json['Page']) : null;
+	Data.fromJson(Map<String, dynamic> json) {
+		page = json['Page'] != null ? new DataPage.fromJson(json['Page']) : null;
 	}
 
 	Map<String, dynamic> toJson() {
@@ -34,17 +34,17 @@ class SSSData {
 	}
 }
 
-class SSSDataPage {
-	SSSDataPagePageinfo pageInfo;
-	List<SSSDataPageMedium> media;
+class DataPage {
+	DataPagePageinfo pageInfo;
+	List<DataPageMedium> media;
 
-	SSSDataPage({this.pageInfo, this.media});
+	DataPage({this.pageInfo, this.media});
 
-	SSSDataPage.fromJson(Map<String, dynamic> json) {
-		pageInfo = json['pageInfo'] != null ? new SSSDataPagePageinfo.fromJson(json['pageInfo']) : null;
+	DataPage.fromJson(Map<String, dynamic> json) {
+		pageInfo = json['pageInfo'] != null ? new DataPagePageinfo.fromJson(json['pageInfo']) : null;
 		if (json['media'] != null) {
-			media = new List<SSSDataPageMedium>();
-			(json['media'] as List).forEach((v) { media.add(new SSSDataPageMedium.fromJson(v)); });
+			media = new List<DataPageMedium>();
+			(json['media'] as List).forEach((v) { media.add(new DataPageMedium.fromJson(v)); });
 		}
 	}
 
@@ -60,16 +60,16 @@ class SSSDataPage {
 	}
 }
 
-class SSSDataPagePageinfo {
+class DataPagePageinfo {
 	int total;
 	int perPage;
 	int lastPage;
 	bool hasNextPage;
 	int currentPage;
 
-	SSSDataPagePageinfo({this.total, this.perPage, this.lastPage, this.hasNextPage, this.currentPage});
+	DataPagePageinfo({this.total, this.perPage, this.lastPage, this.hasNextPage, this.currentPage});
 
-	SSSDataPagePageinfo.fromJson(Map<String, dynamic> json) {
+	DataPagePageinfo.fromJson(Map<String, dynamic> json) {
 		total = json['total'];
 		perPage = json['perPage'];
 		lastPage = json['lastPage'];
@@ -88,30 +88,30 @@ class SSSDataPagePageinfo {
 	}
 }
 
-class SSSDataPageMedium {
-	SSSDataPageMediaTrailer trailer;
-	SSSDataPageMediaCharacters characters;
+class DataPageMedium {
+	DataPageMediaTrailer trailer;
+	DataPageMediaCharacters characters;
 	int favourites;
 	int popularity;
-	SSSDataPageMediaCoverimage coverImage;
+	DataPageMediaCoverimage coverImage;
 	String description;
-	SSSDataPageMediaStaff staff;
-	SSSDataPageMediaTitle title;
-	SSSDataPageMediaRelations relations;
+	DataPageMediaStaff staff;
+	DataPageMediaTitle title;
+	DataPageMediaRelations relations;
 	int episodes;
 
-	SSSDataPageMedium({this.trailer, this.characters, this.favourites, this.popularity, this.coverImage, this.description, this.staff, this.title, this.relations, this.episodes});
+	DataPageMedium({this.trailer, this.characters, this.favourites, this.popularity, this.coverImage, this.description, this.staff, this.title, this.relations, this.episodes});
 
-	SSSDataPageMedium.fromJson(Map<String, dynamic> json) {
-		trailer = json['trailer'] != null ? new SSSDataPageMediaTrailer.fromJson(json['trailer']) : null;
-		characters = json['characters'] != null ? new SSSDataPageMediaCharacters.fromJson(json['characters']) : null;
+	DataPageMedium.fromJson(Map<String, dynamic> json) {
+		trailer = json['trailer'] != null ? new DataPageMediaTrailer.fromJson(json['trailer']) : null;
+		characters = json['characters'] != null ? new DataPageMediaCharacters.fromJson(json['characters']) : null;
 		favourites = json['favourites'];
 		popularity = json['popularity'];
-		coverImage = json['coverImage'] != null ? new SSSDataPageMediaCoverimage.fromJson(json['coverImage']) : null;
+		coverImage = json['coverImage'] != null ? new DataPageMediaCoverimage.fromJson(json['coverImage']) : null;
 		description = json['description'];
-		staff = json['staff'] != null ? new SSSDataPageMediaStaff.fromJson(json['staff']) : null;
-		title = json['title'] != null ? new SSSDataPageMediaTitle.fromJson(json['title']) : null;
-		relations = json['relations'] != null ? new SSSDataPageMediaRelations.fromJson(json['relations']) : null;
+		staff = json['staff'] != null ? new DataPageMediaStaff.fromJson(json['staff']) : null;
+		title = json['title'] != null ? new DataPageMediaTitle.fromJson(json['title']) : null;
+		relations = json['relations'] != null ? new DataPageMediaRelations.fromJson(json['relations']) : null;
 		episodes = json['episodes'];
 	}
 
@@ -143,14 +143,14 @@ class SSSDataPageMedium {
 	}
 }
 
-class SSSDataPageMediaTrailer {
+class DataPageMediaTrailer {
 	String thumbnail;
 	String site;
 	String id;
 
-	SSSDataPageMediaTrailer({this.thumbnail, this.site, this.id});
+	DataPageMediaTrailer({this.thumbnail, this.site, this.id});
 
-	SSSDataPageMediaTrailer.fromJson(Map<String, dynamic> json) {
+	DataPageMediaTrailer.fromJson(Map<String, dynamic> json) {
 		thumbnail = json['thumbnail'];
 		site = json['site'];
 		id = json['id'];
@@ -165,15 +165,15 @@ class SSSDataPageMediaTrailer {
 	}
 }
 
-class SSSDataPageMediaCharacters {
-	List<SSSDataPageMediaCharactersNode> nodes;
+class DataPageMediaCharacters {
+	List<DataPageMediaCharactersNode> nodes;
 
-	SSSDataPageMediaCharacters({this.nodes});
+	DataPageMediaCharacters({this.nodes});
 
-	SSSDataPageMediaCharacters.fromJson(Map<String, dynamic> json) {
+	DataPageMediaCharacters.fromJson(Map<String, dynamic> json) {
 		if (json['nodes'] != null) {
-			nodes = new List<SSSDataPageMediaCharactersNode>();
-			(json['nodes'] as List).forEach((v) { nodes.add(new SSSDataPageMediaCharactersNode.fromJson(v)); });
+			nodes = new List<DataPageMediaCharactersNode>();
+			(json['nodes'] as List).forEach((v) { nodes.add(new DataPageMediaCharactersNode.fromJson(v)); });
 		}
 	}
 
@@ -186,16 +186,16 @@ class SSSDataPageMediaCharacters {
 	}
 }
 
-class SSSDataPageMediaCharactersNode {
-	SSSDataPageMediaCharactersNodesImage image;
-	SSSDataPageMediaCharactersNodesName name;
+class DataPageMediaCharactersNode {
+	DataPageMediaCharactersNodesImage image;
+	DataPageMediaCharactersNodesName name;
 	int id;
 
-	SSSDataPageMediaCharactersNode({this.image, this.name, this.id});
+	DataPageMediaCharactersNode({this.image, this.name, this.id});
 
-	SSSDataPageMediaCharactersNode.fromJson(Map<String, dynamic> json) {
-		image = json['image'] != null ? new SSSDataPageMediaCharactersNodesImage.fromJson(json['image']) : null;
-		name = json['name'] != null ? new SSSDataPageMediaCharactersNodesName.fromJson(json['name']) : null;
+	DataPageMediaCharactersNode.fromJson(Map<String, dynamic> json) {
+		image = json['image'] != null ? new DataPageMediaCharactersNodesImage.fromJson(json['image']) : null;
+		name = json['name'] != null ? new DataPageMediaCharactersNodesName.fromJson(json['name']) : null;
 		id = json['id'];
 	}
 
@@ -212,13 +212,13 @@ class SSSDataPageMediaCharactersNode {
 	}
 }
 
-class SSSDataPageMediaCharactersNodesImage {
+class DataPageMediaCharactersNodesImage {
 	String large;
 	String medium;
 
-	SSSDataPageMediaCharactersNodesImage({this.large, this.medium});
+	DataPageMediaCharactersNodesImage({this.large, this.medium});
 
-	SSSDataPageMediaCharactersNodesImage.fromJson(Map<String, dynamic> json) {
+	DataPageMediaCharactersNodesImage.fromJson(Map<String, dynamic> json) {
 		large = json['large'];
 		medium = json['medium'];
 	}
@@ -231,13 +231,13 @@ class SSSDataPageMediaCharactersNodesImage {
 	}
 }
 
-class SSSDataPageMediaCharactersNodesName {
+class DataPageMediaCharactersNodesName {
 	String last;
 	String first;
 
-	SSSDataPageMediaCharactersNodesName({this.last, this.first});
+	DataPageMediaCharactersNodesName({this.last, this.first});
 
-	SSSDataPageMediaCharactersNodesName.fromJson(Map<String, dynamic> json) {
+	DataPageMediaCharactersNodesName.fromJson(Map<String, dynamic> json) {
 		last = json['last'];
 		first = json['first'];
 	}
@@ -250,15 +250,15 @@ class SSSDataPageMediaCharactersNodesName {
 	}
 }
 
-class SSSDataPageMediaCoverimage {
+class DataPageMediaCoverimage {
 	String extraLarge;
 	String large;
 	String color;
 	String medium;
 
-	SSSDataPageMediaCoverimage({this.extraLarge, this.large, this.color, this.medium});
+	DataPageMediaCoverimage({this.extraLarge, this.large, this.color, this.medium});
 
-	SSSDataPageMediaCoverimage.fromJson(Map<String, dynamic> json) {
+	DataPageMediaCoverimage.fromJson(Map<String, dynamic> json) {
 		extraLarge = json['extraLarge'];
 		large = json['large'];
 		color = json['color'];
@@ -275,15 +275,15 @@ class SSSDataPageMediaCoverimage {
 	}
 }
 
-class SSSDataPageMediaStaff {
-	List<SSSDataPageMediaStaffNode> nodes;
+class DataPageMediaStaff {
+	List<DataPageMediaStaffNode> nodes;
 
-	SSSDataPageMediaStaff({this.nodes});
+	DataPageMediaStaff({this.nodes});
 
-	SSSDataPageMediaStaff.fromJson(Map<String, dynamic> json) {
+	DataPageMediaStaff.fromJson(Map<String, dynamic> json) {
 		if (json['nodes'] != null) {
-			nodes = new List<SSSDataPageMediaStaffNode>();
-			(json['nodes'] as List).forEach((v) { nodes.add(new SSSDataPageMediaStaffNode.fromJson(v)); });
+			nodes = new List<DataPageMediaStaffNode>();
+			(json['nodes'] as List).forEach((v) { nodes.add(new DataPageMediaStaffNode.fromJson(v)); });
 		}
 	}
 
@@ -296,16 +296,16 @@ class SSSDataPageMediaStaff {
 	}
 }
 
-class SSSDataPageMediaStaffNode {
-	SSSDataPageMediaStaffNodesImage image;
-	SSSDataPageMediaStaffNodesName name;
+class DataPageMediaStaffNode {
+	DataPageMediaStaffNodesImage image;
+	DataPageMediaStaffNodesName name;
 	int id;
 
-	SSSDataPageMediaStaffNode({this.image, this.name, this.id});
+	DataPageMediaStaffNode({this.image, this.name, this.id});
 
-	SSSDataPageMediaStaffNode.fromJson(Map<String, dynamic> json) {
-		image = json['image'] != null ? new SSSDataPageMediaStaffNodesImage.fromJson(json['image']) : null;
-		name = json['name'] != null ? new SSSDataPageMediaStaffNodesName.fromJson(json['name']) : null;
+	DataPageMediaStaffNode.fromJson(Map<String, dynamic> json) {
+		image = json['image'] != null ? new DataPageMediaStaffNodesImage.fromJson(json['image']) : null;
+		name = json['name'] != null ? new DataPageMediaStaffNodesName.fromJson(json['name']) : null;
 		id = json['id'];
 	}
 
@@ -322,13 +322,13 @@ class SSSDataPageMediaStaffNode {
 	}
 }
 
-class SSSDataPageMediaStaffNodesImage {
+class DataPageMediaStaffNodesImage {
 	String large;
 	String medium;
 
-	SSSDataPageMediaStaffNodesImage({this.large, this.medium});
+	DataPageMediaStaffNodesImage({this.large, this.medium});
 
-	SSSDataPageMediaStaffNodesImage.fromJson(Map<String, dynamic> json) {
+	DataPageMediaStaffNodesImage.fromJson(Map<String, dynamic> json) {
 		large = json['large'];
 		medium = json['medium'];
 	}
@@ -341,13 +341,13 @@ class SSSDataPageMediaStaffNodesImage {
 	}
 }
 
-class SSSDataPageMediaStaffNodesName {
+class DataPageMediaStaffNodesName {
 	String last;
 	String first;
 
-	SSSDataPageMediaStaffNodesName({this.last, this.first});
+	DataPageMediaStaffNodesName({this.last, this.first});
 
-	SSSDataPageMediaStaffNodesName.fromJson(Map<String, dynamic> json) {
+	DataPageMediaStaffNodesName.fromJson(Map<String, dynamic> json) {
 		last = json['last'];
 		first = json['first'];
 	}
@@ -360,12 +360,12 @@ class SSSDataPageMediaStaffNodesName {
 	}
 }
 
-class SSSDataPageMediaTitle {
+class DataPageMediaTitle {
 	String english;
 
-	SSSDataPageMediaTitle({this.english});
+	DataPageMediaTitle({this.english});
 
-	SSSDataPageMediaTitle.fromJson(Map<String, dynamic> json) {
+	DataPageMediaTitle.fromJson(Map<String, dynamic> json) {
 		english = json['english'];
 	}
 
@@ -376,15 +376,15 @@ class SSSDataPageMediaTitle {
 	}
 }
 
-class SSSDataPageMediaRelations {
-	List<SSSDataPageMediaRelationsNode> nodes;
+class DataPageMediaRelations {
+	List<DataPageMediaRelationsNode> nodes;
 
-	SSSDataPageMediaRelations({this.nodes});
+	DataPageMediaRelations({this.nodes});
 
-	SSSDataPageMediaRelations.fromJson(Map<String, dynamic> json) {
+	DataPageMediaRelations.fromJson(Map<String, dynamic> json) {
 		if (json['nodes'] != null) {
-			nodes = new List<SSSDataPageMediaRelationsNode>();
-			(json['nodes'] as List).forEach((v) { nodes.add(new SSSDataPageMediaRelationsNode.fromJson(v)); });
+			nodes = new List<DataPageMediaRelationsNode>();
+			(json['nodes'] as List).forEach((v) { nodes.add(new DataPageMediaRelationsNode.fromJson(v)); });
 		}
 	}
 
@@ -397,19 +397,19 @@ class SSSDataPageMediaRelations {
 	}
 }
 
-class SSSDataPageMediaRelationsNode {
+class DataPageMediaRelationsNode {
 	int id;
 	String source;
-	SSSDataPageMediaRelationsNodesTitle title;
+	DataPageMediaRelationsNodesTitle title;
 	String type;
 	String status;
 
-	SSSDataPageMediaRelationsNode({this.id, this.source, this.title, this.type, this.status});
+	DataPageMediaRelationsNode({this.id, this.source, this.title, this.type, this.status});
 
-	SSSDataPageMediaRelationsNode.fromJson(Map<String, dynamic> json) {
+	DataPageMediaRelationsNode.fromJson(Map<String, dynamic> json) {
 		id = json['id'];
 		source = json['source'];
-		title = json['title'] != null ? new SSSDataPageMediaRelationsNodesTitle.fromJson(json['title']) : null;
+		title = json['title'] != null ? new DataPageMediaRelationsNodesTitle.fromJson(json['title']) : null;
 		type = json['type'];
 		status = json['status'];
 	}
@@ -427,12 +427,12 @@ class SSSDataPageMediaRelationsNode {
 	}
 }
 
-class SSSDataPageMediaRelationsNodesTitle {
+class DataPageMediaRelationsNodesTitle {
 	String english;
 
-	SSSDataPageMediaRelationsNodesTitle({this.english});
+	DataPageMediaRelationsNodesTitle({this.english});
 
-	SSSDataPageMediaRelationsNodesTitle.fromJson(Map<String, dynamic> json) {
+	DataPageMediaRelationsNodesTitle.fromJson(Map<String, dynamic> json) {
 		english = json['english'];
 	}
 
