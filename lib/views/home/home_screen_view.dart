@@ -1,55 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_animes/modems/Media.dart';
 import 'package:my_animes/views/home/home_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:my_animes/services/graphql/graphql_operation/queries/fetchMedias.dart' as queries;
 
 class HomeScreenView extends HomeScreenState {
+  HomeScreenView(ValueNotifier<GraphQLClient> client) : super(client);
+
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: onWillPop,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Home',
-            style: Theme.of(context).textTheme.title,
-          ),
-        ),
-        body: Container(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _TitleBar(
-                  title: "Popular This Session",
-                  color: Colors.black38,
+    return GraphQLProvider(
+      client: client,
+      child: CacheProvider(
+        child: WillPopScope(
+          onWillPop: onWillPop,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(
+                'Home',
+                style: Theme.of(context).textTheme.title,
+              ),
+            ),
+            body: Container(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _TitleBar(
+                      title: "Popular This Session",
+                      color: Colors.black38,
+                    ),
+                    _PopularThisSession(
+                      items: widget.items,
+                    ),
+                    _TitleBar(
+                      title: "Highly Anticipated Next Season ",
+                      color: Colors.black38,
+                    ),
+                    _HighlyAnticipated(
+                      items: widget.items,
+                    ),
+                    _TitleBar(
+                      title: "Highest Rated All Time",
+                      color: Colors.black38,
+                    ),
+                    _PopularThisSession(
+                      items: widget.items,
+                    ),
+                    _TitleBar(
+                      title: "All Time Popular",
+                      color: Colors.black38,
+                    ),
+                    _PopularThisSession(
+                      items: widget.items,
+                    ),
+                    Query(
+                      options: QueryOptions(
+                        document: queries.getMedia,
+                        variables: <String, int>{
+                          'id': 16498,
+                        },
+                      ),
+                      builder: (QueryResult result) {
+                        if (result.loading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (result.hasErrors) {
+                          return Text('Error ${result.errors}');
+                        }
+
+                        if (result.data == null && result.errors == null) {
+                          return const Text('Both data and errors are null');
+                        }
+
+//                        final dynamic media = result.data['data'];
+//                        print(media);
+                      },
+                    )
+                  ],
                 ),
-                _PopularThisSession(
-                  items: widget.items,
-                ),
-                _TitleBar(
-                  title: "Highly Anticipated Next Season ",
-                  color: Colors.black38,
-                ),
-                _HighlyAnticipated(
-                  items: widget.items,
-                ),
-                _TitleBar(
-                  title: "Highest Rated All Time",
-                  color: Colors.black38,
-                ),
-                _PopularThisSession(
-                  items: widget.items,
-                ),
-                _TitleBar(
-                  title: "All Time Popular",
-                  color: Colors.black38,
-                ),
-                _PopularThisSession(
-                  items: widget.items,
-                ),
-              ],
+              ),
             ),
           ),
         ),

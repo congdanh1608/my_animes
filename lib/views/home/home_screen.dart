@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_animes/modems/Media.dart';
 import 'package:my_animes/views/home/home_screen_view.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:my_animes/local.dart' show YOUR_PERSONAL_ACCESS_TOKEN;
 
 class HomeScreen extends StatefulWidget {
   @protected
@@ -12,7 +14,28 @@ class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     _generateFakeData();
-    return HomeScreenView();
+
+    final HttpLink httpLink = HttpLink(
+      uri: 'https://anilist.co/graphiql/',
+//      uri: 'https://graphql.anilist.co',
+    );
+
+    final AuthLink authLink = AuthLink(
+      getToken: () async => 'Bearer $YOUR_PERSONAL_ACCESS_TOKEN',
+    );
+
+//    final Link link = authLink.concat(httpLink);
+
+    final ValueNotifier<GraphQLClient> client = ValueNotifier(
+      GraphQLClient(
+        link: httpLink,
+        cache: NormalizedInMemoryCache(
+          dataIdFromObject: typenameDataIdFromObject,
+        ),
+      ),
+    );
+
+    return HomeScreenView(client);
   }
 
   _generateFakeData() {
@@ -30,6 +53,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 abstract class HomeScreenState extends State<HomeScreen> {
+  final ValueNotifier<GraphQLClient> client;
+
+  HomeScreenState(this.client);
+
   @protected
   bool isExit = false;
 
