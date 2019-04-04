@@ -27,6 +27,10 @@ dependencies:
   fluttertoast: ^3.0.3
   #image
   transparent_image: ^0.1.0
+  #graphql
+  graphql_flutter: ^1.0.0-beta
+  #rxdart
+  rxdart: ^0.21.0
 
 dev_dependencies:
   flutter_test:

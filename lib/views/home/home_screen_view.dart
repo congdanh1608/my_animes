@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_animes/modems/Media.dart';
+import 'package:my_animes/modems/media.dart';
 import 'package:my_animes/views/home/home_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -49,6 +49,21 @@ class HomeScreenView extends HomeScreenState {
                 _PopularThisSession(
                   items: widget.items,
                 ),
+                StreamBuilder<Entity>(
+                  stream: widget.mediaBloc.animeStream,
+                  builder: (BuildContext context, AsyncSnapshot<Entity> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Errors: ${snapshot.error}');
+                    }
+                    if (snapshot.data == null) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    final Entity entity = snapshot.data;
+                    print(entity);
+                  },
+                )
               ],
             ),
           ),

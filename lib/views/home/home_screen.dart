@@ -2,12 +2,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_animes/modems/Media.dart';
+import 'package:my_animes/modems/media.dart';
+import 'package:my_animes/services/graphql/graphql_bloc/media_bloc.dart';
 import 'package:my_animes/views/home/home_screen_view.dart';
 
 class HomeScreen extends StatefulWidget {
   @protected
   List<DataPageMedium> items = new List<DataPageMedium>(10);
+
+  @protected
+  final MediaBloc mediaBloc;
+
+  HomeScreen({Key key})
+      : mediaBloc = MediaBloc(),
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() {
