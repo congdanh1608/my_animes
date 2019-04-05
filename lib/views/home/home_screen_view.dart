@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_animes/modems/Media.dart';
+import 'package:my_animes/models/DiscoverMovie.dart';
+import 'package:my_animes/models/Media.dart';
+import 'package:my_animes/services/networking/bloc/discover_bloc.dart';
 import 'package:my_animes/views/home/home_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -48,6 +50,22 @@ class HomeScreenView extends HomeScreenState {
                 ),
                 _PopularThisSession(
                   items: widget.items,
+                ),
+                StreamBuilder<DiscoverMovie>(
+                  stream: discoverBloc.subject.stream,
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      if (snapshot.data.statusMessage != null) {
+                        return Text('Error: ${snapshot.data.statusMessage}');
+                      } else if (snapshot.data.errorProcess != null && snapshot.data.errorProcess.length > 0) {
+                        return Text('Error: ${snapshot.data.errorProcess}');
+                      }
+                      return Text('Results: ${snapshot.data.results.length}');
+                    } else
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                  },
                 ),
               ],
             ),

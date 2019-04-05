@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_animes/modems/Media.dart';
+import 'package:my_animes/models/Media.dart';
+import 'package:my_animes/services/networking/bloc/discover_bloc.dart';
 import 'package:my_animes/views/home/home_screen_view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,6 +31,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 abstract class HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    discoverBloc.getDiscoverMovie();
+  }
+
+  @override
+  void dispose() {
+    discoverBloc.dispose();
+    super.dispose();
+  }
+
   @protected
   bool isExit = false;
 
